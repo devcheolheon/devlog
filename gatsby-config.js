@@ -1,14 +1,14 @@
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Starter Blog`,
+    title: `Devlogs by cheolheon`,
     author: {
-      name: `Kyle Mathews`,
-      summary: `who lives and works in San Francisco building useful things.`,
+      name: `cheolheon shin`,
+      summary: `이해하며 즐겁게 개발하고 싶은 개발자 지망생입니다.`,
     },
-    description: `A starter blog demonstrating what Gatsby can do.`,
-    siteUrl: `https://gatsby-starter-blog-demo.netlify.app/`,
+    description: `신철헌의 공부한 것들 및 포토폴리오 등등을 올릴 페이지`,
+    siteUrl: `https://devcheolheon.github.io/`,
     social: {
-      twitter: `kylemathews`,
+      twitter: `devcheolheon`,
     },
   },
   plugins: [
