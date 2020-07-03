@@ -1,9 +1,9 @@
 module.exports = {
   siteMetadata: {
-    title: `Devlogs by cheolheon`,
+    title: `DEV LOGS`,
     author: {
-      name: `cheolheon shin`,
-      summary: `이해하며 즐겁게 개발하고 싶은 개발자 지망생입니다.`,
+      name: `신철헌`,
+      summary: `즐겁게 개발하고 싶은 초보 프론트엔드 개발자입니다`,
     },
     description: `신철헌의 공부한 것들 및 포토폴리오 등등을 올릴 페이지`,
     siteUrl: `https://devcheolheon.github.io/`,
@@ -12,6 +12,14 @@ module.exports = {
     },
   },
   plugins: [
+    {
+      resolve: "gatsby-plugin-web-font-loader",
+      options: {
+        google: {
+          families: ["Song+Myung", "Black+Han+Sans"],
+        },
+      },
+    },
     {
       resolve: `gatsby-source-filesystem`,
       options: {

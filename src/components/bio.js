@@ -8,8 +8,9 @@
 import React from "react"
 import { useStaticQuery, graphql } from "gatsby"
 import Image from "gatsby-image"
+import { GrContactInfo, GrTwitter, GrFacebook } from "react-icons/gr"
 
-import { rhythm } from "../utils/typography"
+import { rhythm, scale } from "../utils/typography"
 
 const Bio = () => {
   const data = useStaticQuery(graphql`
@@ -40,7 +41,9 @@ const Bio = () => {
     <div
       style={{
         display: `flex`,
+        position: `relative`,
         marginBottom: rhythm(2.5),
+        fontFamily: `Nanum Gothic Coding`,
       }}
     >
       <Image
@@ -56,12 +59,43 @@ const Bio = () => {
           borderRadius: `50%`,
         }}
       />
-      <p>
-        Written by <strong>{author.name}</strong> {author.summary}
-        {` `}
-        <a href={`https://twitter.com/${social.twitter}`}>
-          You should follow him on Twitter
-        </a>
+      <p
+        style={{
+          height: `50px`,
+          display: `flex`,
+          flex: `1`,
+          marginRight: rhythm(1),
+          alignItems: `center`,
+          justifyContent: `space-between`,
+          ...scale(0.18),
+        }}
+      >
+        <div style={{ width: `450px`, textAlign: `center` }}>
+          {author.summary}
+        </div>
+        <div style={{ marginTop: `2px` }}>
+          <a
+            style={{
+              boxShadow: "none",
+              marginRight: rhythm(1 / 3),
+            }}
+            href={`https://twitter.com/${social.twitter}`}
+          >
+            <GrContactInfo />
+          </a>
+          <a
+            style={{ boxShadow: "none", marginRight: rhythm(1 / 3) }}
+            href={`https://twitter.com/${social.twitter}`}
+          >
+            <GrTwitter />
+          </a>
+          <a
+            style={{ boxShadow: "none", marginRight: rhythm(1 / 3) }}
+            href={`https://twitter.com/${social.twitter}`}
+          >
+            <GrFacebook />
+          </a>
+        </div>
       </p>
     </div>
   )
