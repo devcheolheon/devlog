@@ -1,22 +1,6 @@
 import React from "react"
 import { Link, graphql } from "gatsby"
 
-const SubDir = subdir => {
-  return (
-    <li>
-      <Link to={subdir}>{subdir}</Link>
-    </li>
-  )
-}
-const MajorDir = ([majorDir, slugs]) => {
-  return (
-    <li>
-      <div>{majorDir}</div>
-      <ul>{slugs.map(SubDir)}</ul>
-    </li>
-  )
-}
-
 const makeDirs = tils => {
   let mappedTils = tils.map(til => {
     let slug = til.node.fields.slug
@@ -35,8 +19,22 @@ const makeDirs = tils => {
   return obj
 }
 
-const Til = ({ tils }) => {
-  let dirs = makeDirs(tils)
+const SubDir = subdir => {
+  return (
+    <li>
+      <Link to={subdir}>{subdir}</Link>
+    </li>
+  )
+}
+const MajorDir = ([majorDir, slugs]) => {
+  return (
+    <li>
+      <div>{majorDir}</div>
+      <ul>{slugs.map(SubDir)}</ul>
+    </li>
+  )
+}
+const Til = ({ dirs }) => {
   return (
     <div>
       <h2>TIL</h2>
@@ -46,22 +44,4 @@ const Til = ({ tils }) => {
 }
 
 export default Til
-export const TilQuery = graphql`
-  {
-    site {
-      siteMetadata {
-        title
-      }
-    }
-    allMarkdownRemark(filter: { fileAbsolutePath: { regex: "/git/TIL//" } }) {
-      edges {
-        node {
-          id
-          fields {
-            slug
-          }
-        }
-      }
-    }
-  }
-`
+export { makeDirs }

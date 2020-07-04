@@ -5,6 +5,7 @@ import Bio from "../components/bio"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import Til from "../components/til"
+import { makeDirs } from "../components/til"
 import { rhythm } from "../utils/typography"
 
 const BlogIndex = ({ data, location }) => {
@@ -13,11 +14,12 @@ const BlogIndex = ({ data, location }) => {
   const tils = data.allMarkdownRemark.edges.filter(obj => {
     return /git\/TIL\//.test(obj.node.fileAbsolutePath)
   })
+
   return (
     <Layout location={location} title={siteTitle}>
       <SEO title="All posts" />
       <Bio />
-      <Til tils={tils} />
+      <Til dirs={makeDirs(tils)} />
       {posts.map(({ node }) => {
         const title = node.frontmatter.title || node.fields.slug
         return (
