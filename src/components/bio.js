@@ -8,7 +8,7 @@
 import React from "react"
 import { useStaticQuery, graphql } from "gatsby"
 import Image from "gatsby-image"
-import { GrContactInfo, GrTwitter, GrFacebook } from "react-icons/gr"
+import { GrContactInfo, GrTwitter, GrGithub } from "react-icons/gr"
 
 import { rhythm, scale } from "../utils/typography"
 
@@ -43,7 +43,6 @@ const Bio = () => {
         display: `flex`,
         position: `relative`,
         marginBottom: rhythm(2.5),
-        fontFamily: `Nanum Gothic Coding`,
       }}
     >
       <Image
@@ -70,7 +69,13 @@ const Bio = () => {
           ...scale(0.18),
         }}
       >
-        <div style={{ width: `450px`, textAlign: `center` }}>
+        <div
+          style={{
+            width: `450px`,
+            textAlign: `center`,
+            fontFamily: `Song Myung, serif`,
+          }}
+        >
           {author.summary}
         </div>
         <div style={{ marginTop: `2px` }}>
@@ -84,16 +89,19 @@ const Bio = () => {
             <GrContactInfo />
           </a>
           <a
-            style={{ boxShadow: "none", marginRight: rhythm(1 / 3) }}
-            href={`https://twitter.com/${social.twitter}`}
+            style={{
+              boxShadow: "none",
+              marginRight: rhythm(1 / 3),
+            }}
+            href={`https://github.com/${social.github}`}
           >
-            <GrTwitter />
+            <GrGithub />
           </a>
           <a
             style={{ boxShadow: "none", marginRight: rhythm(1 / 3) }}
             href={`https://twitter.com/${social.twitter}`}
           >
-            <GrFacebook />
+            <GrTwitter />
           </a>
         </div>
       </p>
