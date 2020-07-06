@@ -14,12 +14,13 @@ const BlogIndex = ({ data, location }) => {
   const tils = data.allMarkdownRemark.edges.filter(obj => {
     return /git\/TIL\//.test(obj.node.fileAbsolutePath)
   })
+  const tilsDir = makeDirs(tils, "TIL")
 
   return (
     <Layout location={location} title={siteTitle}>
       <SEO title="All posts" />
       <Bio />
-      <Til dirs={makeDirs(tils)} />
+      <Til dirs={tilsDir} />
       {posts.map(({ node }) => {
         const title = node.frontmatter.title || node.fields.slug
         return (
