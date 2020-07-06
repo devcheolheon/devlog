@@ -1,68 +1,61 @@
 import React from "react"
-import { Link, graphql } from "gatsby"
+import { Link } from "gatsby"
 
-const makeSubDirs = dirObj => {
-  let keys = Object.keys(dirObj)
-  for (let i = 0; i < keys.length; i++) {
-    let dirArr = dirObj[keys[i]]
-    let obj = {}
-    dirArr.forEach(({ slug, title }) => {
-      let slugArr = slug.split("/")
-      let subDir = slugArr[slugArr.length - 3]
-      if (!obj[subDir]) obj[subDir] = [{ slug, title }]
-      else obj[subDir].push({ slug, title })
-    })
-    dirObj[keys[i]] = obj
-  }
-  return dirObj
-}
-const makeDirs = dirs => {
-  let mappedDirs = dirs.map(til => {
-    let slug = til.node.fields.slug
-    let title = til.node.frontmatter.title || ""
-    let slugArr = til.node.fields.slug.split("/")
-    let majorDir = slugArr[slugArr.length - 4]
-    return { slug, majorDir, title }
-  })
+const makeDirsRecur = function makeDirsRecur(mappedDirs) {
+  if (mappedDirs[0].slugArr.length == 1) return mappedDirs
   let obj = {}
-  mappedDirs.forEach(({ slug, majorDir, title }) => {
-    if (!obj[majorDir]) {
-      obj[majorDir] = [{ slug, title }]
-    } else {
-      obj[majorDir].push({ slug, title })
-    }
-  })
-  obj = makeSubDirs(obj)
+
+  for (let i = 0; i < mappedDirs.length; i++) {
+    let name = mappedDirs[i].slugArr.shift()
+    if (obj[name]) obj[name].push(mappedDirs[i])
+    else obj[name] = [mappedDirs[i]]
+  }
+
+  for (let key in obj) {
+    obj[key] = makeDirsRecur(obj[key])
+  }
+
   return obj
 }
 
-const EndDir = ({ slug, title }) => {
-  return <Link to={slug}>{title || slug}</Link>
+const makeDirs = (dirs, subject) => {
+  let mappedDirs = dirs.map(til => {
+    let slug = til.node.fields.slug
+    let title = til.node.frontmatter.title || ""
+    let slugArr = slug.split("/").slice(1, -1)
+    return { slug, title, slugArr, subject }
+  })
+
+  let obj = {}
+  obj = makeDirsRecur(mappedDirs)
+  return obj
 }
 
-const SubDir = ([subDir, links]) => {
-  return (
-    <li>
-      <div>{subDir}</div>
-      <ul>{links.map(EndDir)}</ul>
-    </li>
-  )
+const LeafDirs = dir => {
+  return <Link to={dir.slug}>{dir.title || dir.slug}</Link>
 }
 
-const MajorDir = ([majorDir, subDir]) => {
-  return (
-    <li>
-      <div>{majorDir}</div>
-      <ul>{Object.entries(subDir).map(SubDir)}</ul>
-    </li>
-  )
+const Dir = ({ dirs }) => {
+  console.log(dirs)
+  if (Array.isArray(dirs)) {
+    return dirs.map(LeafDirs)
+  }
+  const keys = Object.keys(dirs)
+  return keys.map(key => (
+    <div>
+      <h1>{key}</h1>
+      <Dir dirs={dirs[key]} />
+    </div>
+  ))
 }
 
 const Til = ({ dirs }) => {
   return (
     <div>
       <h2>TIL</h2>
-      <ul>{Object.entries(dirs).map(MajorDir)}</ul>
+      <div>
+        <Dir dirs={dirs}></Dir>
+      </div>
     </div>
   )
 }

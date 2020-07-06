@@ -14,6 +14,7 @@ const BlogIndex = ({ data, location }) => {
   const tils = data.allMarkdownRemark.edges.filter(obj => {
     return /git\/TIL\//.test(obj.node.fileAbsolutePath)
   })
+
   const tilsDir = makeDirs(tils, "TIL")
 
   return (
