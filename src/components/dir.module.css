@@ -1,0 +1,52 @@
+.dir {
+  position: relative;
+  display: flex;
+}
+
+.leftarea{
+  width: 10px;
+  position: relative;
+}
+
+.titlearea{
+  height: 40px;
+  display: flex;
+}
+
+.directorytitle{
+  line-height: 40px;
+  margin-left: 4px;
+  margin-right: 4px;
+}
+
+
+.leftarea > .smallupbox{
+  box-sizing: borderBox;
+  height: 20px;
+  width: 10px;
+  border-bottom: 1px black solid;
+  border-left: 2px black solid;
+}
+
+.leftarea > .smalldownbox{
+  box-sizing: borderBox;
+  width: 10px;
+  height: calc( 100% - 20px);
+  border-top: 1px black solid;
+  border-left: 2px black solid;
+}
+.titlearea > .smallupbox{
+  box-sizing: borderBox;
+  height: 20.5px;
+  width: 10px;
+  border-bottom: 2px black solid;
+  height: 40px;
+}
+
+.container > .dir:first-child > .leftarea > .smallupbox{
+  border-left: 0px solid black;
+}
+
+.container > .dir:last-child > .leftarea > .smalldownbox{
+  border-left: 0px solid black;
+}

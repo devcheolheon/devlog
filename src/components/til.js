@@ -1,5 +1,6 @@
 import React from "react"
 import { Link } from "gatsby"
+import dirStyles from "./dir.module.css"
 
 const makeDirsRecur = function makeDirsRecur(mappedDirs) {
   if (mappedDirs[0].slugArr.length == 1) return mappedDirs
@@ -26,25 +27,48 @@ const makeDirs = (dirs, subject) => {
     return { slug, title, slugArr, subject }
   })
 
+  console.log(mappedDirs)
   let obj = {}
   obj = makeDirsRecur(mappedDirs)
   return obj
 }
 
 const LeafDirs = dir => {
-  return <Link to={dir.slug}>{dir.title || dir.slug}</Link>
+  return (
+    <Link
+      style={{
+        marginLeft: `13px`,
+        height: `40px`,
+        lineHeight: `40px`,
+        color: `black`,
+        textDecoration: `none`,
+      }}
+      key={dir.slug + "-link"}
+      to={dir.slug}
+    >
+      {dir.title || dir.slug}
+    </Link>
+  )
 }
 
 const Dir = ({ dirs }) => {
-  console.log(dirs)
   if (Array.isArray(dirs)) {
     return dirs.map(LeafDirs)
   }
   const keys = Object.keys(dirs)
   return keys.map(key => (
-    <div>
-      <h1>{key}</h1>
-      <Dir dirs={dirs[key]} />
+    <div dirStyles key={key + "-dir"} className={dirStyles.dir}>
+      <div className={dirStyles.leftarea}>
+        <div className={dirStyles.smallupbox} />
+        <div className={dirStyles.smalldownbox} />
+      </div>
+      <div className={dirStyles.titlearea}>
+        <div className={dirStyles.directorytitle}>{key}</div>
+        <div className={dirStyles.smallupbox} />
+      </div>
+      <div className={dirStyles.container}>
+        <Dir dirs={dirs[key]} />
+      </div>
     </div>
   ))
 }
@@ -53,7 +77,7 @@ const Til = ({ dirs }) => {
   return (
     <div>
       <h2>TIL</h2>
-      <div>
+      <div className={dirStyles.container}>
         <Dir dirs={dirs}></Dir>
       </div>
     </div>
