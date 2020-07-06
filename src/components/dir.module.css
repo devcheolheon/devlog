@@ -2,7 +2,13 @@
   position: relative;
   display: flex;
 }
-
+.leaf{
+        margin-left: 13px;
+        height: 40px;
+        line-height: 40px;
+        color: black;
+        text-decoration: none;
+}
 .leftarea{
   width: 10px;
   position: relative;
@@ -16,12 +22,12 @@
 .directorytitle{
   line-height: 40px;
   margin-left: 4px;
-  margin-right: 4px;
+  margin-right: 8px;
 }
 
 
 .leftarea > .smallupbox{
-  box-sizing: borderBox;
+  box-sizing: border-box;
   height: 20px;
   width: 10px;
   border-bottom: 1px black solid;
@@ -29,18 +35,18 @@
 }
 
 .leftarea > .smalldownbox{
-  box-sizing: borderBox;
+  box-sizing: border-box;
   width: 10px;
   height: calc( 100% - 20px);
   border-top: 1px black solid;
   border-left: 2px black solid;
 }
+
 .titlearea > .smallupbox{
-  box-sizing: borderBox;
+  box-sizing: border-box;
   height: 20.5px;
   width: 10px;
   border-bottom: 2px black solid;
-  height: 40px;
 }
 
 .container > .dir:first-child > .leftarea > .smallupbox{
@@ -49,4 +55,8 @@
 
 .container > .dir:last-child > .leftarea > .smalldownbox{
   border-left: 0px solid black;
+}
+
+.no .subdirectory {
+  display: none;
 }

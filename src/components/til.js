@@ -36,13 +36,8 @@ const makeDirs = (dirs, subject) => {
 const LeafDirs = dir => {
   return (
     <Link
-      style={{
-        marginLeft: `13px`,
-        height: `40px`,
-        lineHeight: `40px`,
-        color: `black`,
-        textDecoration: `none`,
-      }}
+      className={dirStyles.leaf}
+      style={{}}
       key={dir.slug + "-link"}
       to={dir.slug}
     >
@@ -57,16 +52,21 @@ const Dir = ({ dirs }) => {
   }
   const keys = Object.keys(dirs)
   return keys.map(key => (
-    <div dirStyles key={key + "-dir"} className={dirStyles.dir}>
+    <div
+      dirStyles
+      key={key + "-dir"}
+      className={`${dirStyles.dir} ${
+        key == "DataSturcture" ? dirStyles.no : ""
+      }`}
+    >
       <div className={dirStyles.leftarea}>
         <div className={dirStyles.smallupbox} />
         <div className={dirStyles.smalldownbox} />
       </div>
       <div className={dirStyles.titlearea}>
         <div className={dirStyles.directorytitle}>{key}</div>
-        <div className={dirStyles.smallupbox} />
       </div>
-      <div className={dirStyles.container}>
+      <div className={`${dirStyles.container + " " + dirStyles.subdirectory}`}>
         <Dir dirs={dirs[key]} />
       </div>
     </div>
