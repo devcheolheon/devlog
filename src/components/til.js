@@ -1,6 +1,7 @@
 import React from "react"
 import { Link } from "gatsby"
 import dirStyles from "./dir.module.css"
+import { GrCaretNext } from "react-icons/gr"
 
 const makeDirsRecur = function makeDirsRecur(mappedDirs) {
   if (mappedDirs[0].slugArr.length == 1) return mappedDirs
@@ -35,14 +36,12 @@ const makeDirs = (dirs, subject) => {
 
 const LeafDirs = dir => {
   return (
-    <Link
-      className={dirStyles.leaf}
-      style={{}}
-      key={dir.slug + "-link"}
-      to={dir.slug}
-    >
-      {dir.title || dir.slug}
-    </Link>
+    <div className={dirStyles.leafarea}>
+      <GrCaretNext className={dirStyles.icon} />
+      <Link className={dirStyles.leaf} key={dir.slug + "-link"} to={dir.slug}>
+        {dir.title || dir.slug}
+      </Link>
+    </div>
   )
 }
 
