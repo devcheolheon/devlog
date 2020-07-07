@@ -10,21 +10,23 @@ import { rhythm } from "../utils/typography"
 const BlogIndex = ({ data, location }) => {
   const siteTitle = data.site.siteMetadata.title
   const posts = data.allMarkdownRemark.edges
+
   const tils = data.allMarkdownRemark.edges.filter(obj => {
     return /git\/TIL\//.test(obj.node.fileAbsolutePath)
   })
-  const tilsDir = makeDirs(tils, "TIL")
+  const tilsDir = tils.length ? makeDirs(tils, "TIL") : undefined
+
   const birs = data.allMarkdownRemark.edges.filter(obj => {
     return /git\/BIR\//.test(obj.node.fileAbsolutePath)
   })
-  const birsDir = makeDirs(birs, "BIR")
+  const birsDir = birs.length ? makeDirs(birs, "BIR") : undefined
 
   return (
     <Layout location={location} title={siteTitle}>
       <SEO title="All posts" />
       <Bio />
-      <GithubSection name={"TIL"} dirs={tilsDir} />
-      <GithubSection name={"BIR"} dirs={birsDir} />
+      {tilsDir && <GithubSection name={"TIL"} dirs={tilsDir} />}
+      {birsDir && <GithubSection name={"BIR"} dirs={birsDir} />}
     </Layout>
   )
 }

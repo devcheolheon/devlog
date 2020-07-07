@@ -106,6 +106,7 @@ const GithubSection = ({ name, dirs }) => {
     },
     [dirDom]
   )
+  if (!dirs) return
   return (
     <div>
       <h2>{name}</h2>
