@@ -1,5 +1,6 @@
 import React from "react"
 import { Link, graphql } from "gatsby"
+import "./blog-post.css"
 
 import Bio from "../components/bio"
 import Layout from "../components/layout"
@@ -37,7 +38,10 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
             {post.frontmatter.date}
           </p>
         </header>
-        <section dangerouslySetInnerHTML={{ __html: post.html }} />
+        <section
+          className={"markdown-body"}
+          dangerouslySetInnerHTML={{ __html: post.html }}
+        />
         <hr
           style={{
             marginBottom: rhythm(1),
