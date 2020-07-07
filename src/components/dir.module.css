@@ -16,12 +16,13 @@
    margin-left: 18px;
    color: black;
    box-shadow : 0 0px;
+   font-size: 1.7rem;
    font-family: 'Do hyeon', sans-serif;
 }
 
 .leafarea .icon{
    position:absolute;
-   top: 13px;
+   top: 10px;
 }
 
 .leftarea{
