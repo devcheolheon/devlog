@@ -1,7 +1,8 @@
-import React from "react"
+import React, { useRef, useCallback } from "react"
 import { Link } from "gatsby"
 import dirStyles from "./dir.module.css"
 import { GrCaretNext } from "react-icons/gr"
+import classNames from "classnames"
 
 const makeDirsRecur = function makeDirsRecur(mappedDirs) {
   if (mappedDirs[0].slugArr.length == 1) return mappedDirs
@@ -28,7 +29,6 @@ const makeDirs = (dirs, subject) => {
     return { slug, title, slugArr, subject }
   })
 
-  console.log(mappedDirs)
   let obj = {}
   obj = makeDirsRecur(mappedDirs)
   return obj
@@ -36,48 +36,85 @@ const makeDirs = (dirs, subject) => {
 
 const LeafDirs = dir => {
   return (
-    <div className={dirStyles.leafarea}>
+    <div className={dirStyles.leafarea} key={dir.slug + "-link"}>
       <GrCaretNext className={dirStyles.icon} />
-      <Link className={dirStyles.leaf} key={dir.slug + "-link"} to={dir.slug}>
+      <Link className={dirStyles.leaf} to={dir.slug}>
         {dir.title || dir.slug}
       </Link>
     </div>
   )
 }
 
-const Dir = ({ dirs }) => {
+const Dir = ({ dirs, depth }) => {
   if (Array.isArray(dirs)) {
     return dirs.map(LeafDirs)
   }
   const keys = Object.keys(dirs)
-  return keys.map(key => (
-    <div
-      dirStyles
-      key={key + "-dir"}
-      className={`${dirStyles.dir} ${
-        key == "DataSturcture" ? dirStyles.no : ""
-      }`}
-    >
-      <div className={dirStyles.leftarea}>
-        <div className={dirStyles.smallupbox} />
-        <div className={dirStyles.smalldownbox} />
+  return keys.map((key, i) => {
+    return (
+      <div
+        key={`dir_${key}_${depth}_${i}`}
+        id={`dir_${key}_${depth}_${i}`}
+        className={`${dirStyles.dir}`}
+      >
+        <div className={dirStyles.leftarea}>
+          <div className={dirStyles.smallupbox} />
+          <div className={dirStyles.smalldownbox} />
+        </div>
+        <div className={dirStyles.titlearea}>
+          <div
+            className={dirStyles.directorytitle}
+            data-dirname={`dir_${key}_${depth}_${i}`}
+          >
+            {key}
+          </div>
+        </div>
+        <div
+          className={`${dirStyles.container + " " + dirStyles.subdirectory}`}
+        >
+          <Dir dirs={dirs[key]} depth={depth + "_" + i} />
+        </div>
       </div>
-      <div className={dirStyles.titlearea}>
-        <div className={dirStyles.directorytitle}>{key}</div>
-      </div>
-      <div className={`${dirStyles.container + " " + dirStyles.subdirectory}`}>
-        <Dir dirs={dirs[key]} />
-      </div>
-    </div>
-  ))
+    )
+  })
+}
+
+const setAllDescendantsUnvisible = targetDom => {
+  let descendants = targetDom.querySelectorAll(`.${dirStyles.dir}`)
+  for (let i = 0; i < descendants.length; i++) {
+    descendants[i].className = classNames(dirStyles.dir, {
+      [dirStyles.selected]: false,
+    })
+  }
+}
+const setVisible = targetDom => {
+  targetDom.className = classNames(dirStyles.dir, {
+    [dirStyles.selected]: true,
+  })
 }
 
 const Til = ({ dirs }) => {
+  const dirDom = useRef(null)
+  const onclickhandler = useCallback(
+    e => {
+      let targetDirID = e.target.getAttribute("data-dirname")
+      if (!targetDirID) return
+      let targetDom = dirDom.current.querySelector(`#${targetDirID}`)
+      let parentDom = targetDom.parentNode
+      setAllDescendantsUnvisible(parentDom)
+      setVisible(targetDom)
+    },
+    [dirDom]
+  )
   return (
     <div>
       <h2>TIL</h2>
-      <div className={dirStyles.container}>
-        <Dir dirs={dirs}></Dir>
+      <div
+        className={dirStyles.container}
+        onClick={onclickhandler}
+        ref={dirDom}
+      >
+        <Dir dirs={dirs} depth={0}></Dir>
       </div>
     </div>
   )

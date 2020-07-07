@@ -67,7 +67,9 @@
 .container > .dir:last-child > .leftarea > .smalldownbox{
   border-left: 0px solid black;
 }
-
-.no .subdirectory {
+.subdirectory{
   display: none;
+}
+.selected > .subdirectory {
+  display: block;
 }
