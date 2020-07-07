@@ -93,7 +93,7 @@ const setVisible = targetDom => {
   })
 }
 
-const Til = ({ dirs }) => {
+const GithubSection = ({ name, dirs }) => {
   const dirDom = useRef(null)
   const onclickhandler = useCallback(
     e => {
@@ -108,7 +108,7 @@ const Til = ({ dirs }) => {
   )
   return (
     <div>
-      <h2>TIL</h2>
+      <h2>{name}</h2>
       <div
         className={dirStyles.container}
         onClick={onclickhandler}
@@ -120,5 +120,5 @@ const Til = ({ dirs }) => {
   )
 }
 
-export default Til
+export default GithubSection
 export { makeDirs }
