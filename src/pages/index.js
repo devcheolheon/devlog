@@ -4,16 +4,24 @@ import { Link, graphql } from "gatsby"
 import Bio from "../components/bio"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
+import Til from "../components/til"
+import { makeDirs } from "../components/til"
 import { rhythm } from "../utils/typography"
 
 const BlogIndex = ({ data, location }) => {
   const siteTitle = data.site.siteMetadata.title
   const posts = data.allMarkdownRemark.edges
+  const tils = data.allMarkdownRemark.edges.filter(obj => {
+    return /git\/TIL\//.test(obj.node.fileAbsolutePath)
+  })
+
+  const tilsDir = makeDirs(tils, "TIL")
 
   return (
     <Layout location={location} title={siteTitle}>
       <SEO title="All posts" />
       <Bio />
+      <Til dirs={tilsDir} />
       {posts.map(({ node }) => {
         const title = node.frontmatter.title || node.fields.slug
         return (
@@ -25,7 +33,7 @@ const BlogIndex = ({ data, location }) => {
                 }}
               >
                 <Link style={{ boxShadow: `none` }} to={node.fields.slug}>
-                  {title}
+                  {node.frontmatter.title}
                 </Link>
               </h3>
               <small>{node.frontmatter.date}</small>
@@ -60,6 +68,7 @@ export const pageQuery = graphql`
           fields {
             slug
           }
+          fileAbsolutePath
           frontmatter {
             date(formatString: "MMMM DD, YYYY")
             title
