@@ -17,7 +17,7 @@ module.exports = {
       resolve: "gatsby-plugin-web-font-loader",
       options: {
         google: {
-          families: ["Song+Myung", "Do+Hyeon", "Sunflower:700"],
+          families: ["Song+Myung", "Do+Hyeon", "Sunflower"],
         },
       },
     },
