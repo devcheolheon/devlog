@@ -61,6 +61,7 @@
     "serve": "gatsby serve",
     "clean": "gatsby clean",
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1",
-    "deploy": "gatsby build && gh-pages -d public -b master"
+    "deploy": "gatsby build && gh-pages -d public -r git@github.com:devcheolheon/devcheolheon.github.io.git -b master",
+    "public": "gh-pages -d public -r git@github.com:devcheolheon/devcheolheon.github.io.git -b master"
   }
 }
