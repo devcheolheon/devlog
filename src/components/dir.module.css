@@ -2,6 +2,9 @@
   position: relative;
   display: flex;
 }
+.dirTitle{
+  font-family: Montserrat, sans-serif;
+}
 
 .leafarea {
    height: 40px;
@@ -13,6 +16,7 @@
    margin-left: 18px;
    color: black;
    box-shadow : 0 0px;
+   font-family: 'Do hyeon', sans-serif;
 }
 
 .leafarea .icon{
@@ -27,7 +31,9 @@
 
 .titlearea{
   height: 40px;
+  font-size : 1.3rem;
   display: flex;
+  font-family: 'Do hyeon', sans-serif;
 }
 
 .directorytitle{

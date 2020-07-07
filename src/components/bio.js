@@ -73,7 +73,7 @@ const Bio = () => {
           style={{
             width: `450px`,
             textAlign: `center`,
-            fontFamily: `Song Myung, serif`,
+            fontFamily: `Sunflower`,
           }}
         >
           {author.summary}

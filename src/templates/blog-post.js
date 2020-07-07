@@ -24,6 +24,7 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
             style={{
               marginTop: rhythm(1),
               marginBottom: 0,
+              fontFamily: "Do Hyeon",
             }}
           >
             {post.frontmatter.title}

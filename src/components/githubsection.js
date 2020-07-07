@@ -109,7 +109,7 @@ const GithubSection = ({ name, dirs }) => {
   if (!dirs) return
   return (
     <div>
-      <h2>{name}</h2>
+      <h2 className={dirStyles.dirTitle}>{name}</h2>
       <div
         className={dirStyles.container}
         onClick={onclickhandler}
