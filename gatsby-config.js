@@ -24,8 +24,8 @@ module.exports = {
     {
       resolve: `gatsby-source-git`,
       options: {
-        name: `algoPractice`,
-        remote: `https://github.com/devcheolheon/algoPractice`,
+        name: `BIR`,
+        remote: `https://github.com/devcheolheon/BIR`,
         branch: `master`,
         // Only import the docs folder from a codebase.
         patterns: ["**/*.md"],
