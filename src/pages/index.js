@@ -21,6 +21,7 @@ const BlogIndex = ({ data, location }) => {
   })
   const birsDir = birs.length ? makeDirs(birs, "BIR") : undefined
 
+  console.log(birsDir)
   return (
     <Layout location={location} title={siteTitle}>
       <SEO title="All posts" />
