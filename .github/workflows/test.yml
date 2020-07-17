@@ -36,3 +36,5 @@ jobs:
           REPOSITORY_NAME : devcheolheon/devlogTestDeploy
           BRANCH: master # The branch the action should deploy to.
           FOLDER: public # The folder the action should deploy.
+        env:
+          gatsbyPathPrefix: devlogTestDeploy
