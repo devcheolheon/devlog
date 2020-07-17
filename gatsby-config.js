@@ -1,3 +1,6 @@
+console.log("env!!")
+console.log(process.env.PATH_PREFIX)
+console.log(process.env.PATH_PREFIX || "")
 module.exports = {
   siteMetadata: {
     title: `DEV LOGS`,
