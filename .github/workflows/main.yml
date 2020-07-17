@@ -33,4 +33,4 @@ jobs:
           SSH: true
           REPOSITORY_NAME : devcheolheon/devcheolheon.github.io 
           BRANCH: master # The branch the action should deploy to.
-          FOLDER: build # The folder the action should deploy.
+          FOLDER: public # The folder the action should deploy.
