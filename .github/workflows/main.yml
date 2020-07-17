@@ -26,6 +26,6 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@3.5.7
         with:
           REPOSITORY_NAME : devcheolheon/devcheolheon.github.io 
-          GITHUB_TOKEN: ${{ secrets.DEPLOY_GATSBY_SECRET }}
+          ACCESS_TOKEN: ${{ secrets.DEPLOY_GATSBY_SECRET }}
           BRANCH: master # The branch the action should deploy to.
           FOLDER: build # The folder the action should deploy.
