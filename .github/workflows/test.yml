@@ -37,4 +37,4 @@ jobs:
           BRANCH: master # The branch the action should deploy to.
           FOLDER: public # The folder the action should deploy.
         env:
-          gatsbyPathPrefix: devlogTestDeploy
+          PATH_PREFIX: devlogTestDeploy 
