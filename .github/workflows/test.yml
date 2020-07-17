@@ -34,5 +34,5 @@ jobs:
         with:
           SSH: true
           REPOSITORY_NAME : devcheolheon/devlogTestDeploy
-          BRANCH: test # The branch the action should deploy to.
+          BRANCH: master # The branch the action should deploy to.
           FOLDER: public # The folder the action should deploy.
