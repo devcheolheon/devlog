@@ -5,15 +5,13 @@ name: CI
 # Controls when the action will run. Triggers the workflow on push or pull request
 # events but only for the master branch
 on:
-  push:
-    branches: [ master ]  
   repository_dispatch:
     types:
-      - deploy
+      - test
 
 jobs:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
-  build-and-deploy:
+  build-and-deploy-for-test:
     runs-on: ubuntu-latest
     steps:
       - name: Install SSH Client 🔑
@@ -35,6 +33,6 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@3.5.7
         with:
           SSH: true
-          REPOSITORY_NAME : devcheolheon/devcheolheon.github.io 
-          BRANCH: master # The branch the action should deploy to.
+          REPOSITORY_NAME : devcheolheon/devlogTestDeploy
+          BRANCH: test # The branch the action should deploy to.
           FOLDER: public # The folder the action should deploy.
