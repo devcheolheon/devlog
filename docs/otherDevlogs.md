@@ -1,4 +1,6 @@
-깔끔하고 예쁘다..
+깔끔하고 예쁘다,
+연도별로, 카테코리, 포스트등을 잘 정리해두셧다. 
+
 https://jonnung.dev/
 
 https://ivorycirrus.github.io/
