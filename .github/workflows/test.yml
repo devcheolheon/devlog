@@ -28,6 +28,8 @@ jobs:
         run: |
           npm install
           npm run build
+        env:
+          PATH_PREFIX: devlogTestDeploy 
 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@3.5.7
@@ -36,5 +38,4 @@ jobs:
           REPOSITORY_NAME : devcheolheon/devlogTestDeploy
           BRANCH: master # The branch the action should deploy to.
           FOLDER: public # The folder the action should deploy.
-        env:
-          PATH_PREFIX: devlogTestDeploy 
+   
