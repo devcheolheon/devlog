@@ -8,6 +8,10 @@
 
 ## 주요 변경 사항    
 
+- v0.1.1 
+  - github action을 통한 자동 배포 
+    - (TIL, BIL, devlog 레포에서 deploy 브랜치에 push가 발생할 경우)
+  
 - v0.1.0
   - GithubSection 컴포넌트를 추가함 
     - TIL BIR 레포에서 readme를 긁어온 뒤 디렉터리 구조의 메뉴를 만들어서 웹페이지에서 보여줌
